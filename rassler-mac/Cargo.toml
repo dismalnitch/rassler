@@ -1,0 +1,9 @@
+[package]
+name = "rassler_mac"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+egui = "0.36.2"
+egui_plot = "0.37.0"
+picoserve = { version = "0.20.1", features = ["tokio"] }

@@ -1,0 +1,11 @@
+/Users/zfox/dn/rassler/rassler-mac/target/debug/deps/embedded_io-521561aba66eb396.d: /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/lib.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/mod.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_mut.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_ref.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/../README.md
+
+/Users/zfox/dn/rassler/rassler-mac/target/debug/deps/libembedded_io-521561aba66eb396.rlib: /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/lib.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/mod.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_mut.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_ref.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/../README.md
+
+/Users/zfox/dn/rassler/rassler-mac/target/debug/deps/libembedded_io-521561aba66eb396.rmeta: /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/lib.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/mod.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_mut.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_ref.rs /Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/../README.md
+
+/Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/lib.rs:
+/Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/mod.rs:
+/Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_mut.rs:
+/Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/impls/slice_ref.rs:
+/Users/zfox/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embedded-io-0.7.1/src/../README.md:
