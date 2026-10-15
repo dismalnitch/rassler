@@ -1,28 +1,21 @@
 import math
-from typing import Iterable
+
 from rassler_py.generator import Generator
-
-SAMPLE_RATE_KHZ: int = 16
-
-
-sine = Generator({freq = 34, amp = 1})
-
-def sin(freq_hz: float, amp: int, time_s: float, phase_rad: float = 0) -> float:
-    omega = (2 * math.pi) * freq_hz
-    return amp * math.sin(omega * time_s + phase_rad)
+from rassler_py.timing import SAMPLE_RATE
 
 
-def sin_tick(freq: float, prev_tick_ms: int, ms: int) -> tuple[Iterable[float], int]:
-    sample_count = ms * SAMPLE_RATE_KHZ
-    start_sample = prev_tick_ms * SAMPLE_RATE_KHZ
-    end_sample = start_sample + sample_count
-    tick_duration_s = (ms / sample_count) / 1000
+class Sine(Generator):
+    """state: {"freq": Hz, "amp": peak, "phase": radians (optional)}"""
 
-    prev_time_s = prev_tick_ms / 1000
-    cur_time_s = prev_time_s
-    samples: Iterable[float] = []
-    for tick in range(start_sample, end_sample):
-        sample = sin(freq, 1, cur_time_s)
-        samples.append(sample)
-        cur_time_s += tick_duration_s
-    return samples, (prev_tick_ms + ms)
+    def generate(self, n: int) -> float:
+        freq = self.state["freq"]
+        amp = self.state["amp"]
+        phase = self.state.get("phase", 0.0)
+
+        # Whole cycles elapsed by sample n. Only the fractional part matters,
+        # and keeping the angle in [0, 2π) is what keeps f32 accurate later.
+        cycles = freq * n / SAMPLE_RATE
+        return amp * math.sin(2 * math.pi * (cycles % 1.0) + phase)
+
+
+sine = Sine({"freq": 34, "amp": 1})

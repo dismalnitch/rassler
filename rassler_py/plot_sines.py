@@ -1,8 +1,10 @@
 """Plot oscillator output against a reference sine.
 
-    python plot_sines.py                 # opens a window
-    python plot_sines.py --freq 40 60    # several frequencies
-    python plot_sines.py --save out.png  # write a file instead
+Run from the repo root:
+
+    python -m rassler_py.plot_sines                 # opens a window
+    python -m rassler_py.plot_sines --freq 40 60    # several frequencies
+    python -m rassler_py.plot_sines --save out.png  # write a file instead
 """
 
 import argparse
@@ -10,9 +12,8 @@ import argparse
 import matplotlib.pyplot as plt
 import numpy as np
 
-from oscillators import SAMPLE_RATE_KHZ, sin_tick
-
-SAMPLE_RATE = SAMPLE_RATE_KHZ * 1000
+from rassler_py.devices import Sine
+from rassler_py.timing import SAMPLE_RATE, SAMPLES_PER_MS, ms_to_samples
 
 
 def reference_sine(freq: float, start_sample: int, count: int) -> np.ndarray:
@@ -22,17 +23,17 @@ def reference_sine(freq: float, start_sample: int, count: int) -> np.ndarray:
 
 
 def ms_axis(start_sample: int, count: int) -> np.ndarray:
-    return np.arange(start_sample, start_sample + count) / SAMPLE_RATE_KHZ
+    return np.arange(start_sample, start_sample + count) / SAMPLES_PER_MS
 
 
 def plot_one_block(ax, freq: float, ms: int) -> None:
-    """One call to sin_tick, with the reference drawn underneath."""
-    samples, _ = sin_tick(freq, 0, ms)
-    samples = np.asarray(list(samples))
+    """One block from Sine, with the reference drawn underneath."""
+    samples, _ = Sine({"freq": freq, "amp": 1}).generate_block(0, ms_to_samples(ms))
+    samples = np.asarray(samples)
     t = ms_axis(0, len(samples))
 
     ax.plot(t, reference_sine(freq, 0, len(samples)), color="0.75", lw=3, label="reference")
-    ax.plot(t, samples, lw=1, label="sin_tick")
+    ax.plot(t, samples, lw=1, label="Sine")
     ax.set_title(f"{freq:g} Hz, one {ms} ms block")
     ax.set_xlabel("time (ms)")
     ax.set_ylim(-1.2, 1.2)
@@ -41,10 +42,11 @@ def plot_one_block(ax, freq: float, ms: int) -> None:
 
 def plot_two_blocks(ax, freq: float, ms: int) -> None:
     """Two back-to-back calls, so a jump at the seam stands out."""
-    first, next_tick = sin_tick(freq, 0, ms)
-    second, _ = sin_tick(freq, next_tick, ms)
-    first = np.asarray(list(first))
-    second = np.asarray(list(second))
+    sine = Sine({"freq": freq, "amp": 1})
+    first, next_start = sine.generate_block(0, ms_to_samples(ms))
+    second, _ = sine.generate_block(next_start, ms_to_samples(ms))
+    first = np.asarray(first)
+    second = np.asarray(second)
     total = len(first) + len(second)
 
     ax.plot(ms_axis(0, total), reference_sine(freq, 0, total), color="0.75", lw=3, label="reference")
